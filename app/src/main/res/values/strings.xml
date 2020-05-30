@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Project</string>
+    <string name="already_have_an_account">Already Have An Account?</string>
+    <string name="user_logo">user logo</string>
+</resources>
