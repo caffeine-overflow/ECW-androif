@@ -104,4 +104,18 @@ public class DBAdapter {
         args.put(KEY_AGE, age);
         return db.update(DATABASE_TABLE, args, KEY_ROWID + "=" + rowId, null) > 0;
     }
+
+
+    public boolean getUserByEmail(String email, String password) throws SQLException
+    {
+        Cursor  mCursor = db.rawQuery("SELECT * FROM users WHERE email =? AND password = ?", new String[] {email, password});
+        if(mCursor.getCount() != 0)  {
+            mCursor.moveToFirst();
+            Log.i(mCursor.getString(2),"checking password");
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 }

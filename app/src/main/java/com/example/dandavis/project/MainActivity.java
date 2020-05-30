@@ -2,9 +2,13 @@ package com.example.dandavis.project;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
+import android.view.View;
+import android.widget.EditText;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -15,11 +19,10 @@ import java.io.OutputStream;
 
 public class MainActivity extends AppCompatActivity {
     private DBAdapter db;
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         // database
         db = new DBAdapter(this);
         // get the existing database file or from the assets folder if doesn't exist
@@ -67,5 +70,17 @@ public class MainActivity extends AppCompatActivity {
         }
         inputStream.close();
         outputStream.close();
+    }
+
+    public void onLogin(View view) {
+        EditText mEdit   = (EditText)findViewById(R.id.inputEmail);
+        String email  = mEdit.getText().toString();
+        EditText pEdit  = (EditText) findViewById(R.id.inputPassword);
+        String password  = pEdit.getText().toString();
+        Log.i(password,"works");
+
+        db.open();
+        boolean valid = db.getUserByEmail(email, password);
+        db.close();
     }
 }
