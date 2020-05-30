@@ -30,8 +30,8 @@ public class MainActivity extends AppCompatActivity {
             if(!f.exists()){
                 f.mkdirs();
                 //copy db from assets folder
-                CopyDB(getBaseContext().getAssets().open("mydb"),
-                        new FileOutputStream(destPath + "/MyDB"));
+                CopyDB(getBaseContext().getAssets().open("dan.db"),
+                        new FileOutputStream(destPath + "/MyDatabase"));
             }
         }catch (FileNotFoundException e)
         {
@@ -45,11 +45,10 @@ public class MainActivity extends AppCompatActivity {
         db.open();
         Cursor c;
         c = db.getAllContacts();
-        Log.i("fdf","Damsdm");
         if(c.moveToFirst())
         {
             do{
-                Log.i(c.getString(3),"Damm");
+                Log.i(c.getString(2),"here");
             } while(c.moveToNext());
         }
         db.close();

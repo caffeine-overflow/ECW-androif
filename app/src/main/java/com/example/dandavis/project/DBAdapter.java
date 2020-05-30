@@ -8,22 +8,17 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 public class DBAdapter {
-    private static final String KEY_ROWID = "_id";
+    private static final String KEY_ROWID = "id";
     private static final String KEY_NAME = "name";
     private static final String KEY_EMAIL = "email";
     private static final String KEY_AGE = "age";
     private static final String TAG = "DBAdapter";
 
-    private static final String DATABASE_NAME = "MyDB";
+    private static final String DATABASE_NAME = "MyDatabase";
     private static final String DATABASE_TABLE = "contacts";
     private static final int DATABASE_VERSION = 2;
 
-    private static final String DATABASE_CREATE =
-            "create table contacts (_id integer primary key autoincrement, "
-                    + "name text not null, email text not null, age integer);";
-
     private final Context context;
-
     private DatabaseHelper DBHelper;
     private SQLiteDatabase db;
 
@@ -43,20 +38,11 @@ public class DBAdapter {
         @Override
         public void onCreate(SQLiteDatabase db)
         {
-            try {
-                db.execSQL(DATABASE_CREATE);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
         }
 
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)
         {
-            Log.w(TAG, "Upgrading database from version " + oldVersion + " to "
-                    + newVersion + ", which will destroy all old data");
-            db.execSQL("DROP TABLE IF EXISTS contacts");
-            onCreate(db);
         }
     }
 
