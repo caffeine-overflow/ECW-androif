@@ -2,4 +2,9 @@
     <string name="app_name">Project</string>
     <string name="already_have_an_account">Already Have An Account?</string>
     <string name="user_logo">user logo</string>
+    <string name="sign_up">SIGN UP</string>
+    <string name="forgot_password">FORGOT PASSWORD?</string>
+    <string name="login">LOGIN</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
 </resources>
