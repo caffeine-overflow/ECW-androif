@@ -136,6 +136,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/round_bg"
+        android:onClick="onSignUp"
         android:padding="8dp"
         android:text="@string/sign_up"
         android:textColor="@android:color/white"

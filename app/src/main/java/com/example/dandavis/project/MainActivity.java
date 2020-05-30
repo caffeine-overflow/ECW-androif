@@ -73,14 +73,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onLogin(View view) {
-        EditText mEdit   = (EditText)findViewById(R.id.inputEmail);
+        EditText mEdit   = findViewById(R.id.inputEmail);
         String email  = mEdit.getText().toString();
-        EditText pEdit  = (EditText) findViewById(R.id.inputPassword);
+        EditText pEdit  = findViewById(R.id.inputPassword);
         String password  = pEdit.getText().toString();
         Log.i(password,"works");
 
         db.open();
         boolean valid = db.getUserByEmail(email, password);
         db.close();
+    }
+
+    public void onSignUp(View view) {
+        Intent intent = new Intent(this,ActivitySignUp.class);
+        startActivity(intent);
     }
 }

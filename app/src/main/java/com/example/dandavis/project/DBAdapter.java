@@ -118,4 +118,13 @@ public class DBAdapter {
             return false;
         }
     }
+
+    public void registerUser(String name, String email, String password)
+    {
+        ContentValues initialValues = new ContentValues();
+        initialValues.put("name", name);
+        initialValues.put("email", email);
+        initialValues.put("password", password);
+        db.insert("users", null, initialValues);
+    }
 }

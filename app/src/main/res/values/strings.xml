@@ -13,4 +13,6 @@
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="oh_la_la">Oh la la</string>
     <string name="todo">TODO</string>
+    <string name="name">Name</string>
+    <string name="dont_have_an_account">Dont Have An Account?</string>
 </resources>
