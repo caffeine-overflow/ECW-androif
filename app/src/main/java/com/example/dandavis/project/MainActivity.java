@@ -2,7 +2,9 @@ package com.example.dandavis.project;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -39,6 +41,18 @@ public class MainActivity extends AppCompatActivity {
         {
             e.printStackTrace();
         }
+
+        db.open();
+        Cursor c;
+        c = db.getAllContacts();
+        Log.i("fdf","Damsdm");
+        if(c.moveToFirst())
+        {
+            do{
+                Log.i(c.getString(3),"Damm");
+            } while(c.moveToNext());
+        }
+        db.close();
     }
 
     // copy database from assets to phone

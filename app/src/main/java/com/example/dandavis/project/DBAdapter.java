@@ -8,24 +8,24 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 public class DBAdapter {
-    static final String KEY_ROWID = "_id";
-    static final String KEY_NAME = "name";
-    static final String KEY_EMAIL = "email";
-    static final String KEY_AGE = "age";
-    static final String TAG = "DBAdapter";
+    private static final String KEY_ROWID = "_id";
+    private static final String KEY_NAME = "name";
+    private static final String KEY_EMAIL = "email";
+    private static final String KEY_AGE = "age";
+    private static final String TAG = "DBAdapter";
 
-    static final String DATABASE_NAME = "MyDB";
-    static final String DATABASE_TABLE = "contacts";
-    static final int DATABASE_VERSION = 2;
+    private static final String DATABASE_NAME = "MyDB";
+    private static final String DATABASE_TABLE = "contacts";
+    private static final int DATABASE_VERSION = 2;
 
-    static final String DATABASE_CREATE =
+    private static final String DATABASE_CREATE =
             "create table contacts (_id integer primary key autoincrement, "
                     + "name text not null, email text not null, age integer);";
 
-    final Context context;
+    private final Context context;
 
-    DatabaseHelper DBHelper;
-    SQLiteDatabase db;
+    private DatabaseHelper DBHelper;
+    private SQLiteDatabase db;
 
     public DBAdapter(Context ctx)
     {
