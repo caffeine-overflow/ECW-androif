@@ -83,8 +83,10 @@ public class MainActivity extends AppCompatActivity {
         boolean valid = db.getUserByEmail(email, password);
         db.close();
 
-        Intent intent = new Intent(this,Main2Activity.class);
-        startActivity(intent);
+        if(valid) {
+            Intent intent = new Intent(this, Main2Activity.class);
+            startActivity(intent);
+        }
     }
 
     public void onSignUp(View view) {

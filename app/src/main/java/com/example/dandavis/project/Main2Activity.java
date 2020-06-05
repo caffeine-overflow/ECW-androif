@@ -5,11 +5,14 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
@@ -20,6 +23,20 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
     Toolbar toolbar;
     NavigationView navigationView;
     ActionBarDrawerToggle toggle;
+
+    String [] people = {
+            "Lianne",
+            "Ethan",
+            "Hunter",
+            "Jamie",
+            "Jordan",
+            "Bradley",
+            "Anna",
+            "Bogdan"};
+    RecyclerView recyclerView;
+    RecyclerView.Adapter recyclerViewAdapter;
+    RecyclerView.LayoutManager recyclerViewManager;
+    TextView textViewDisplay;
 
 
     @Override
@@ -34,10 +51,17 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-       // getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
         toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,R.string.drawerOpen, R.string.drawerClose);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
+
+        recyclerView = findViewById( R.id.recyclerView );
+        textViewDisplay = findViewById( R.id.textViewDisplay );
+        recyclerViewManager = new LinearLayoutManager( getApplicationContext() );
+        recyclerView.setLayoutManager( recyclerViewManager );
+        recyclerView.setHasFixedSize( true );
+        recyclerViewAdapter = new MyAdapter( getApplicationContext(), people );
+        recyclerView.setAdapter( recyclerViewAdapter );
     }
 
     @Override
