@@ -27,8 +27,6 @@ public class CategoryItems extends AppCompatActivity {
         categoryId = getIntent().getIntExtra("categoryId", -1);
         Log.i(String.valueOf(categoryId), "categoryId");
 
-        String[] data = {"1", "2", "3", "4", "5", "6", "7", "8"};
-
         // set up the RecyclerView
         RecyclerView recyclerView = findViewById(R.id.categoyRecyclerView);
         int numberOfColumns = 2;
@@ -42,12 +40,12 @@ public class CategoryItems extends AppCompatActivity {
         if(c.moveToFirst())
         {
             do{
-                Log.i(String.valueOf(c.getDouble(2)),"LAST");
+                Log.i(c.getString(1),"LAST");
                 itemList.add( new Items(c.getInt( 0 ),c.getString( 1 ), c.getDouble(2)) );
             } while(c.moveToNext());
         }
         db.close();
-        adapter = new CategoyItemsAdapter(this, data, categoryImages);
+        adapter = new CategoyItemsAdapter(this, itemList, categoryImages);
         recyclerView.setAdapter(adapter);
         recyclerView.setHasFixedSize( true );
     }

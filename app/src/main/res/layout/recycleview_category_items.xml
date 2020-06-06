@@ -9,7 +9,7 @@
     <RelativeLayout
         android:id="@+id/relativeLayout2"
         android:layout_width="150dp"
-        android:layout_height="210dp"
+        android:layout_height="220dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -23,7 +23,9 @@
 
             android:layout_marginTop="40dp"
             android:background="@color/colorPrimary"
-            tools:layout_editor_absoluteY="50dp" />
+            tools:layout_editor_absoluteY="50dp">
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <ImageView
             android:id="@+id/imageView"
@@ -37,8 +39,21 @@
             android:id="@+id/info_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:text="TextView"
+            android:layout_alignParentBottom="false"
+            android:layout_marginTop="195dp"
+            android:layout_marginBottom="1dp"
+            android:fontFamily="@font/source_code_pro_medium"
+            android:text="@string/button"
+            android:textAlignment="center" />
+
+        <TextView
+            android:id="@+id/itemPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="false"
+            android:layout_marginTop="180dp"
+            android:fontFamily="@font/source_code_pro_semibold"
+            android:text="@string/name"
             android:textAlignment="center" />
 
     </RelativeLayout>

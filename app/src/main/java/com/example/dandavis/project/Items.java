@@ -1,9 +1,9 @@
 package com.example.dandavis.project;
 
 public class Items {
-    public int id_;
-    public String name_;
-    public double  price_;
+    private int id_;
+    private String name_;
+    private double  price_;
 
     public Items(int id_, String name, double price) {
         this.id_ = id_;
