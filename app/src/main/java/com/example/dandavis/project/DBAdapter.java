@@ -127,4 +127,10 @@ public class DBAdapter {
         initialValues.put("password", password);
         db.insert("users", null, initialValues);
     }
+
+
+    public Cursor getAllCategories()
+    {
+        return db.query("categories", new String[] {"id", "name"}, null, null, null, null, null);
+    }
 }

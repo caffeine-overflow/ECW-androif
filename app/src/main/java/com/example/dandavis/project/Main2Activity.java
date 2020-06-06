@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -17,30 +18,26 @@ import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
+import java.util.ArrayList;
+
 public class Main2Activity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     DrawerLayout drawerLayout;
     Toolbar toolbar;
     NavigationView navigationView;
     ActionBarDrawerToggle toggle;
-
-    String [] people = {
-            "Lianne",
-            "Ethan",
-            "Hunter",
-            "Jamie",
-            "Jordan",
-            "Bradley",
-            "Anna",
-            "Bogdan"};
+    ArrayList<Category> categoryList;
+    private DBAdapter db;
     RecyclerView recyclerView;
     RecyclerView.Adapter recyclerViewAdapter;
     RecyclerView.LayoutManager recyclerViewManager;
     TextView textViewDisplay;
-
+    int categoryImages [] ={R.drawable.blazer,R.drawable.denim,R.drawable.sweater,R.drawable.floral,R.drawable.cardigan};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        db = new DBAdapter(this);
+        categoryList = new ArrayList<Category>(  );
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
@@ -56,11 +53,23 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
         toggle.syncState();
 
         recyclerView = findViewById( R.id.recyclerView );
-        textViewDisplay = findViewById( R.id.textViewDisplay );
         recyclerViewManager = new LinearLayoutManager( getApplicationContext() );
         recyclerView.setLayoutManager( recyclerViewManager );
         recyclerView.setHasFixedSize( true );
-        recyclerViewAdapter = new MyAdapter( getApplicationContext(), people );
+
+        db.open();
+        Cursor c;
+        c = db.getAllCategories();
+        if(c.moveToFirst())
+        {
+            do{
+                categoryList.add( new Category(c.getInt( 0 ),c.getString( 1 )) );
+                Log.i(c.getString( 1 ),"checking category");
+            } while(c.moveToNext());
+        }
+        db.close();
+
+        recyclerViewAdapter = new MyAdapter( getApplicationContext(), categoryList, categoryImages );
         recyclerView.setAdapter( recyclerViewAdapter );
     }
 
@@ -73,7 +82,6 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
                 startActivity(intent);
                 break;
         }
-
         return false;
     }
 }
