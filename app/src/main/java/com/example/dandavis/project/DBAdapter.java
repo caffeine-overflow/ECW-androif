@@ -106,17 +106,10 @@ public class DBAdapter {
     }
 
 
-    public boolean getUserByEmail(String email, String password) throws SQLException
+    public Cursor getUserByEmail(String email, String password) throws SQLException
     {
         Cursor  mCursor = db.rawQuery("SELECT * FROM users WHERE email =? AND password = ?", new String[] {email, password});
-        if(mCursor.getCount() != 0)  {
-            mCursor.moveToFirst();
-            Log.i(mCursor.getString(2),"checking password");
-            return true;
-        }
-        else{
-            return false;
-        }
+        return mCursor;
     }
 
     public void registerUser(String name, String email, String password)

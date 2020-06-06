@@ -33,14 +33,18 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
     RecyclerView.LayoutManager recyclerViewManager;
     TextView textViewDisplay;
     int categoryImages [] ={R.drawable.blazer,R.drawable.denim,R.drawable.sweater,R.drawable.floral,R.drawable.cardigan};
+    int userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        db = new DBAdapter(this);
-        categoryList = new ArrayList<Category>(  );
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
+        userId = getIntent().getIntExtra("userId", -1);
+        Log.i(String.valueOf(userId) , "userid");
 
+        db = new DBAdapter(this);
+        categoryList = new ArrayList<Category>(  );
         drawerLayout = findViewById(R.id.drawer);
         toolbar = findViewById((R.id.toolbar));
         navigationView = findViewById(R.id.navigationView);

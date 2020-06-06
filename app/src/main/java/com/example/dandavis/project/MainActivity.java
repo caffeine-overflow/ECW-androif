@@ -78,15 +78,17 @@ public class MainActivity extends AppCompatActivity {
         EditText pEdit  = findViewById(R.id.inputPassword);
         String password  = pEdit.getText().toString();
         Log.i(password,"works");
-
+        Cursor mCursor;
         db.open();
-        boolean valid = db.getUserByEmail(email, password);
-        db.close();
-
-        if(valid) {
+        mCursor = db.getUserByEmail(email, password);
+        if(mCursor.getCount() != 0)  {
+            mCursor.moveToFirst();
+            Log.i(mCursor.getString(0),"checking password");
             Intent intent = new Intent(this, Main2Activity.class);
+            intent.putExtra("userId", mCursor.getInt(0));
             startActivity(intent);
         }
+        db.close();
     }
 
     public void onSignUp(View view) {
