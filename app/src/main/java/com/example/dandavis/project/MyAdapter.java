@@ -40,7 +40,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             super(v);
             textView = (TextView)v.findViewById(R.id.textViewRecyclerItem);
             imageView = (ImageView) v.findViewById(R.id.imageView);
-            categoryItemLayout = (ConstraintLayout) v.findViewById(R.id.categoryItems);
+            categoryItemLayout = (ConstraintLayout) v.findViewById(R.id.categories);
         }
     }
 
