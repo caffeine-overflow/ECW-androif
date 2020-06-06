@@ -1,12 +1,14 @@
 package com.example.dandavis.project;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -33,10 +35,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     public static class ViewHolder extends RecyclerView.ViewHolder{
         public TextView textView;
         public ImageView imageView;
+        ConstraintLayout categoryItemLayout;
         public ViewHolder(View v){
             super(v);
             textView = (TextView)v.findViewById(R.id.textViewRecyclerItem);
             imageView = (ImageView) v.findViewById(R.id.imageView);
+            categoryItemLayout = (ConstraintLayout) v.findViewById(R.id.categoryItems);
         }
     }
 
@@ -45,7 +49,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         view1 = LayoutInflater.from(context).inflate(R.layout.recyclerview_item,parent,false);
         viewHolder1 = new ViewHolder(view1);
         viewHolder1.itemView.getLayoutParams().height = 450;
-        //viewHolder1.itemView.getLayoutParams().width = 800;
         return viewHolder1;
     }
 
@@ -53,7 +56,17 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     public void onBindViewHolder(ViewHolder holder, int position){
         holder.textView.setText(categoryList.get( position ).getName_());
         holder.imageView.setImageResource(categoryImages_[position]);
+
+        holder.categoryItemLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, CategoryItems.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
+            }
+        });
     }
+
 
     @Override
     public int getItemCount(){
