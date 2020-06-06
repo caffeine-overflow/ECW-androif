@@ -121,7 +121,11 @@ public class DBAdapter {
         db.insert("users", null, initialValues);
     }
 
-
+    public Cursor getItemsByCategory(int id) throws SQLException
+    {
+        Cursor mCursor = db.query(true, "items", new String[] {"id", "name", "price"}, "category_id" + "=" + id, null, null, null, null, null);
+        return mCursor;
+    }
     public Cursor getAllCategories()
     {
         return db.query("categories", new String[] {"id", "name"}, null, null, null, null, null);
