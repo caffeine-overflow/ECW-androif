@@ -30,11 +30,13 @@ public class Cart extends AppCompatActivity {
     RecyclerView.Adapter recyclerViewAdapter;
     RecyclerView.LayoutManager recyclerViewManager;
     ArrayList<CartItem> cartItems;
+    private DBAdapter db;
     int userId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
+        db = new DBAdapter(this);
         cartItems = new ArrayList<CartItem>(  );
         userId = getIntent().getIntExtra("userId", -1);
         SharedPreferences sharedPreferences = getSharedPreferences("datapersistance", Context.MODE_PRIVATE);
@@ -45,6 +47,8 @@ public class Cart extends AppCompatActivity {
             int index = 0;
             String quantity = "";
             String imageId = "";
+            double price = 0;
+            String productName = "";
             while(it.hasNext())
             {
               if(index == 0){
@@ -55,7 +59,19 @@ public class Cart extends AppCompatActivity {
               }
                 index++;
             }
-            cartItems.add( new CartItem( quantity,entry.getKey(), imageId));
+
+            Log.i(entry.getKey(),"PRODUCT id");
+            db.open();
+            Cursor mCursor = db.getProductById(Integer.parseInt(entry.getKey()));
+            if(mCursor.getCount() != 0)  {
+                mCursor.moveToFirst();
+                price = mCursor.getFloat(2);
+                productName = mCursor.getString(1);
+            }
+            db.close();
+
+            Log.i(productName,"PRODUCT");
+            cartItems.add( new CartItem( quantity,entry.getKey(), imageId, productName, price));
         }
 
         recyclerView = findViewById( R.id.cartRecyclerView );

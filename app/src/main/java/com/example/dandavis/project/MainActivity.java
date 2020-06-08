@@ -45,16 +45,6 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        db.open();
-        Cursor c;
-        c = db.getAllContacts();
-        if(c.moveToFirst())
-        {
-            do{
-                Log.i(c.getString(2),"here");
-            } while(c.moveToNext());
-        }
-        db.close();
     }
 
     // copy database from assets to phone

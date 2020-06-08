@@ -12,6 +12,8 @@ import android.widget.TextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -36,11 +38,13 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
         public TextView textView;
+        public TextView productNameView;
         public ImageView imageView;
         ConstraintLayout cartLayout;
         public ViewHolder(View v){
             super(v);
             textView = (TextView)v.findViewById(R.id.cartQuanity);
+            productNameView =  (TextView)v.findViewById(R.id.cartProductName);
             imageView =  v.findViewById(R.id.cartImageView);
             cartLayout = (ConstraintLayout) v.findViewById(R.id.cartRecycler);
         }
@@ -50,13 +54,16 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
     public CartAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
         view1 = LayoutInflater.from(context).inflate(R.layout.cart_recycler_view,parent,false);
         viewHolder1 = new ViewHolder(view1);
-        viewHolder1.itemView.getLayoutParams().height = 450;
+        viewHolder1.itemView.getLayoutParams().height = 250;
         return viewHolder1;
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position){
-         holder.textView.setText(cartItems.get(position).getQuantity());
+        NumberFormat formatter = new DecimalFormat("##.00");
+        String output = formatter.format(cartItems.get(position).getPrice());
+         holder.textView.setText( "$"+output+" X " + cartItems.get(position).getQuantity() );
+         holder.productNameView.setText( cartItems.get(position).getProductName() );
          holder.imageView.setImageResource(Integer.parseInt(cartItems.get(position).getImageId()));
     }
 
