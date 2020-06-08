@@ -81,8 +81,10 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch(menuItem.getItemId()){
             case R.id.profile:
-                Toast.makeText(Main2Activity.this, "Profile", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(this,MainActivity.class);
+               //Toast.makeText(Main2Activity.this, "Profile", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(this,Cart.class);
+                userId = getIntent().getIntExtra("userId", -1);
+                intent.putExtra("userId", userId);
                 startActivity(intent);
                 break;
         }

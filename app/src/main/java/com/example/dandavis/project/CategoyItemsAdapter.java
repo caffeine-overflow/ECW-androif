@@ -54,6 +54,7 @@ public class CategoyItemsAdapter extends RecyclerView.Adapter<CategoyItemsAdapte
                 Intent intent = new Intent(context_, Order.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra("productName", itemList_.get(position).getName_());
+                intent.putExtra("productId", itemList_.get(position).getId_());
                 intent.putExtra("productImage", mImages[position]);
                 intent.putExtra("productPrice", itemList_.get(position).getPrice_());
                 context_.startActivity(intent);

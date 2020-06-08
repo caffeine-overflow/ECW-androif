@@ -50,7 +50,7 @@ public class CategoryItems extends AppCompatActivity {
         if(c.moveToFirst())
         {
             do{
-                Log.i(c.getString(1),"LAST");
+                Log.i(c.getString(0),"LAST");
                 itemList.add( new Items(c.getInt( 0 ),c.getString( 1 ), c.getDouble(2)) );
             } while(c.moveToNext());
         }

@@ -5,8 +5,8 @@ public class Items {
     private String name_;
     private double  price_;
 
-    public Items(int id_, String name, double price) {
-        this.id_ = id_;
+    public Items(int id, String name, double price) {
+        this.id_ = id;
         this.name_ = name;
         this.price_ = price;
     }
